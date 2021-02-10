@@ -75,7 +75,11 @@ let bundles = [
         serve({
           contentBase: ['dist', 'static'],
           open: true,
-          port: process.env.DEV_PORT || defaultDevPort
+          port: process.env.DEV_PORT || defaultDevPort,
+          headers: {
+            'Cross-Origin-Opener-Policy': 'same-origin',
+            'Cross-Origin-Embedder-Policy': 'require-corp'
+          }
         }),
       !isProduction && livereload()
     ],

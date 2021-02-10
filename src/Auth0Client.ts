@@ -815,6 +815,13 @@ export default class Auth0Client {
   private async _getTokenFromIFrame(
     options: GetTokenSilentlyOptions
   ): Promise<any> {
+    if ((window as any).crossOriginIsolated) {
+      this.logout({
+        localOnly: true
+      });
+      this.loginWithRedirect();
+      throw new Error('login_required');
+    }
     const stateIn = encode(createRandomString());
     const nonceIn = encode(createRandomString());
     const code_verifier = createRandomString();
