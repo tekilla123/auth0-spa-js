@@ -28,11 +28,12 @@
     "serve:coverage": "serve coverage/lcov-report -n",
     "serve:stats": "serve bundle-stats -n",
     "print-bundle-size": "node ./scripts/print-bundle-size",
-    "prepare": "npm run build",
     "prepack": "npm run build && npm run test && node ./scripts/prepack",
     "release": "node ./scripts/release",
     "release:clean": "node ./scripts/cleanup",
-    "publish:cdn": "ccu --trace"
+    "publish:cdn": "ccu --trace",
+    "prepare": "npm run build-github",
+    "build-github": "rollup -m -c --environment NODE_ENV:production"
   },
   "devDependencies": {
     "@auth0/component-cdn-uploader": "github:auth0/component-cdn-uploader#v2.2.2",
